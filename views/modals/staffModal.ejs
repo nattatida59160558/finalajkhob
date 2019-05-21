@@ -1,0 +1,185 @@
+<div>
+    <!-- Modal เพิ่ม -->
+    <div class="modal fade addStaff" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <form action="manageStaff/post" method="post" id="formcreate">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addStaff">
+                            เพิ่มเจ้าหน้าที่</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="addStaff">
+                            ข้อมูลuser</h5><br>
+
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">username</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="username" id="username">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">password</label>
+                            <div class="col-sm-10">
+                                <input required type="text" name="uType" id="uType" style="display: none" value="staff">
+                                <input required type="password" class="form-control form-control-lg" name="password" id="password">
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 class="modal-title" id="addStaff">
+                            ข้อมูลส่วนตัว</h5><br>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">คำนำหน้าชื่อ</label>
+                            <div class="col-sm-10">
+                                <select class="form-control  form-control-lg" id="prefixName" name="prefixName">
+                                <option>นาย</option>
+                                <option>นางสาว</option>
+                                <option>นาง</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ชื่อ</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="firstName" id="firstName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">นามสกุล</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="lastName" id="lastName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">คณะ</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="faculty" id="faculty">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">สาขา</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="major" id="major">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ตำแหน่ง</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="position" id="position">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <!--เพิ่ม-->
+    </div>
+
+
+    <!-- Modal แก้ไข -->
+    <div class="modal fade updateStaff" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <form action="manageStaff/update" method="post" id="formedit">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateStaff">
+                            แก้ไขเจ้าหน้าที่</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="updateStaff">
+                            ข้อมูลuser</h5><br>
+
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">username</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="editusername" id="editusername">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">password</label>
+                            <div class="col-sm-10">
+                                <input required type="text" name="_id" id="editStaffId" style="display: none">
+                                <input required type="text" name="edituType" id="edituType" style="display: none" value="staff">
+                                <input required type="password" class="form-control form-control-lg" name="editpassword" id="editpassword">
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 class="modal-title" id="updateStaff">
+                            ข้อมูลส่วนตัว</h5><br>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">คำนำหน้าชื่อ</label>
+                            <div class="col-sm-10">
+                                <select class="form-control  form-control-lg" id="editprefixName" name="editprefixName">
+                                <option>นาย</option>
+                                <option >นางสาว</option>
+                                <option >นาง</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ชื่อ</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="editfirstName" id="editfirstName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">นามสกุล</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="editlastName" id="editlastName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">คณะ</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="editfaculty" id="editfaculty">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">สาขา</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="editmajor" id="editmajor">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ตำแหน่ง</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="editposition" id="editposition">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <!--แก้ไข-->
+
+
+        <script type="text/javascript">
+            var editStaff = (_id, username, password, uType, prefixName, firstName, lastName, faculty, major, position) => {
+                _id: $('#editStaffId').val(_id)
+                username: $('#editusername').val(username)
+                password: $('#editpassword').val(password)
+                uType: $('#edituType').val(uType)
+                prefixName: $('#editprefixName').val(prefixName)
+                firstName: $('#editfirstName').val(firstName)
+                lastName: $('#editlastName').val(lastName)
+                faculty: $('#editfaculty').val(faculty)
+                major: $('#editmajor').val(major)
+                position: $('#editposition').val(position)
+            }
+        </script>

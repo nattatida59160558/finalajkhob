@@ -1,0 +1,172 @@
+<%- include('../layouts/Header'); -%>
+<%- include('../layouts/CSS'); -%>
+<%- include('../layouts/endHeader'); -%>
+
+<div id="wrapper">
+    
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+    </a>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+  
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item" >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>จัดการผู้ใช้</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">เลือก user</h6>
+          <a class="collapse-item" href="/manageStudent">นิสิต</a>
+          <a class="collapse-item" href="/manageStaff">เจ้าหน้าที่</a>
+          <a class="collapse-item" href="/manageTeacher">อาจารย์</a>
+        </div>
+      </div>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+  
+    <!-- Nav Item - Pages Collapse Menu -->
+  
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+      <a class="nav-link" href="/manageBuilding">
+        <i class="fas fa-fw fa-table"></i>
+        <span>จัดการตึก</span></a>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+  
+    <!-- Nav Item - Tables -->
+    <li class="nav-item active">
+      <a class="nav-link" href="/manageSubject">
+        <i class="fas fa-fw fa-table"></i>
+        <span>จัดการคอร์สเรียน</span></a>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+  
+    <li class="nav-item">
+      <a class="nav-link" href="/manageYear">
+        <i class="fas fa-fw fa-table"></i>
+        <span>จัดการปีการศึกษา</span></a>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+  
+    <li class="nav-item">
+      <a class="nav-link" href="/login">
+        <i class="fas fa-fw fa-table"></i>
+        <span>ออกจากระบบ</span></a>
+    </li>
+  
+  </ul>
+  <!--endSidebar-->
+  
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <%- include('../layouts/topbarEIEI'); -%>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="col-sm-10">
+                    <div class="container">
+                        <button style="float: right;" type="submit" class="btn btn-success" data-toggle="modal"
+                            data-toggle="modal" data-target=".addSubjectModal">เพิ่ม</button>
+                        <ul class="nav nav-tabs" style="float: left;">
+                            <li class="nav-item"><a class="nav-link active">จัดการรายวิชา</a></li>
+                        </ul>
+                        <div style="clear: both"></div>
+                        <div style="height: 400px !important; overflow: auto;">
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <td><b>รหัสวิชา</b></td>
+                                        <td><b>ชื่อวิชา</b></td>
+                                        <td><b>หน่วยกิต</b></td>
+                                        <td><b>สถานะ</b></td>
+                                        <td><b>เปิด / ปิดรายวิชา</b></td>
+                                        <td><b>คอร์สเรียน</b></td>
+                                        <td><b>แก้ไข</b></td>
+                                        <td><b>ลบ</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0; i < subject.length; i++) { %>
+
+                                    <tr>
+                                        <td>
+                                            <%= subject[i].sub_id %>
+                                        </td>
+                                        <td>
+                                            <%= subject[i].sub_name %>
+                                        </td>
+                                        <td>
+                                            <%= subject[i].credit %>
+                                        </td>
+                                        <td>
+                                            <%= subject[i].sub_status %>
+                                        </td>
+                                        <td>
+                                            <a href="/manageSubject/change/<%= subject[i]._id %>"
+                                                class="btn btn-primary">ปิด/เปิด</a>
+                                        </td>
+                                        <td>
+
+                                            <a class="btn btn-primary"
+                                                href="/manageCourse/<%= subject[i]._id %>/">คอร์สเรียน</a>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-warning" data-toggle="modal"
+                                                data-toggle="modal" data-target=".editSubjectModal"
+                                                onclick="editSubject('<%= subject[i]._id %>','<%= subject[i].sub_id %>','<%= subject[i].sub_name %>','<%= subject[i].sub_status %>','<%= subject[i].semester %>','<%= subject[i].year %>')">แก้ไข</button>
+                                        </td>
+                                        <td><a href="manageSubject/delete/<%= subject[i]._id %>"
+                                                class="btn btn-danger">ลบ</a></td>
+                                    </tr>
+
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+
+    <%- include('../modals/subjectModal'); -%>
+    <%- include('../layouts/Bottom'); -%>

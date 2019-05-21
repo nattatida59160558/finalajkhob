@@ -1,0 +1,111 @@
+<div>
+    <!-- Modal เพิ่ม -->
+    <div class="modal fade addSubjectModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <form action="manageSubject/create" method="post" id="formcreate">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSubjectModal">
+                            เพิ่มรายวิชาเรียน</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">รหัสวิชา</label>
+                            <div class="col-sm-10">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required type="text" class="form-control form-control-lg" name="sub_id" id="sub_id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ชื่อวิชา</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="sub_name" id="sub_name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">สถานะ</label>
+                            <div class="col-sm-10">
+                                <select class="form-control  form-control-lg" id="sub_status" name="sub_status">
+                                <option>ปิด</option>
+                                <option>เปิด</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">หน่วยกิต</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="credit" id="credit">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <!--เพิ่ม-->
+    </div>
+
+    <!-- Modal แก้ไข -->
+    <div class="modal fade editSubjectModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <form action="manageSubject/updateSubject" method="post" id="formedit">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editSubjectModal">
+                            แก้ไขรายวิชาเรียน</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">รหัสวิชา</label>
+                            <div class="col-sm-10">
+                                <input required type="text" name="_id" id="editsubid" style="display: none">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required type="text" class="form-control form-control-lg" name="editsub_id" id="editsub_id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ชื่อวิชา</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="editsub_name" id="editsub_name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">สถานะ</label>
+                            <div class="col-sm-10">
+                                <select class="form-control  form-control-lg" id="editsub_status" name="editsub_status">
+                            <option>ปิด</option>
+                            <option>เปิด</option>
+                        </select>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var editSubject = (_id, sub_id, sub_name, sub_status, semester, year) => {
+                _id: $('#editsubid').val(_id)
+                sub_id: $('#editsub_id').val(sub_id)
+                sub_name: $('#editsub_name').val(sub_name)
+                sub_status: $('#editsub_status').val(sub_status)
+                semester: $('#editsemester').val(semester)
+                year: $('#edityear').val(year)
+            }
+        </script>

@@ -1,0 +1,237 @@
+<%- include('../layouts/Header'); -%>
+<%- include('../layouts/CSS'); -%>
+<%- include('../layouts/endHeader'); -%>
+
+<div id="wrapper">
+    
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+    </a>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+  
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item" >
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>จัดการผู้ใช้</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">เลือก user</h6>
+          <a class="collapse-item" href="/manageStudent">นิสิต</a>
+          <a class="collapse-item" href="/manageStaff">เจ้าหน้าที่</a>
+          <a class="collapse-item" href="/manageTeacher">อาจารย์</a>
+        </div>
+      </div>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+  
+    <!-- Nav Item - Pages Collapse Menu -->
+  
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+      <a class="nav-link" href="/manageBuilding">
+        <i class="fas fa-fw fa-table"></i>
+        <span>จัดการตึก</span></a>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+  
+    <!-- Nav Item - Tables -->
+    <li class="nav-item active">
+      <a class="nav-link" href="/manageSubject">
+        <i class="fas fa-fw fa-table"></i>
+        <span>จัดการคอร์สเรียน</span></a>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+  
+    <li class="nav-item">
+      <a class="nav-link" href="/manageYear">
+        <i class="fas fa-fw fa-table"></i>
+        <span>จัดการปีการศึกษา</span></a>
+    </li>
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+  
+    <li class="nav-item">
+      <a class="nav-link" href="/login">
+        <i class="fas fa-fw fa-table"></i>
+        <span>ออกจากระบบ</span></a>
+    </li>
+  
+  </ul>
+  <!--endSidebar-->
+  
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <%- include('../layouts/topbarEIEI'); -%>
+             <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="col-sm-10">
+                    <div class="container">
+
+                        <!--ห้องสอบที่ว่าง-->
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active">ห้องสอบที่ว่าง</a></li>
+                        </ul>
+                        <div style="clear: both"></div>
+                        <div style="height: auto !important; overflow: auto;">
+                            <table class="table table-striped" style="text-align: center">
+                                <thead>
+                                    <tr>
+                                        <!--<td><b>ชื่อตึก</b></td>-->
+                                        <td><b>ชื่อห้องสอบ</b></td>
+                                        <td><b>ชั้น</b></td>
+                                        <td><b>จำนวนที่นั่งทั้งหมด</b></td>
+                                        <td><b>จำนวนที่นั่งว่าง</b></td>
+                                        <td><b>เลือก</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    
+                                    <% 
+                                    let arrExamRoom = []
+                                    for(let i = 0 ; i < exam.room.length ; i++){
+                                        arrExamRoom.push(exam.room[i]._id+'')
+                                    }
+                                    console.log(arrExamRoom)
+                                    for(let i=0; i < room.length ; i++) {
+                                       
+                                        if(!arrExamRoom.includes(room[i]._id+'')){
+                                            console.log(room[i]._id)
+                                    %>
+                                    <tr>
+                                        <!--   <td>
+                                            <%= room[i].building.buildingName %>
+                                        </td>-->
+                                        <td>
+                                            <%= room[i].name %>
+                                        </td>
+                                        <td>
+                                            <%= room[i].floor %>
+                                        </td>
+                                        <td>
+                                            <%=room[i].seat.length%>
+                                        </td>
+
+                                        <% var emptySeat = 0 
+                                        for (let j = 0 ;  j < room[i].seat.length ; j++ ) {
+                                            if(room[i].seat[j].student == null) {
+                                                emptySeat++
+                                            }
+                                        } %>
+                                        <td> <%= emptySeat %></td>
+
+                                        <td>
+                                            <a href="/manageCourse/manageTestRoom/addTestRoom/<%=room[i]._id%>/<%=exam._id%>"
+                                                class="btn btn-primary">เลือก</button>
+                                        </td>
+                                    </tr>
+                                    <% }} %>
+
+                                </tbody>
+                            </table>
+                            <!--ห้องสอบที่ว่าง-->
+                            <!--ห้องสอบที่เลือก-->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active">ห้องสอบที่เลือก</a></li>
+                            </ul>
+                            <div style="clear: both"></div>
+                            <div style="height: auto !important; overflow: auto;">
+                                <table class="table table-striped" style="text-align: center">
+                                    <thead>
+                                        <tr>
+                                            <!--<td><b>ชื่อตึก</b></td>-->
+                                            <td><b>ชื่อห้องสอบ</b></td>
+                                            <td><b>ชั้น</b></td>
+                                            <td><b>จำนวนที่นั่งทั้งหมด</b></td>
+                                            <td><b>จำนวนที่นั่งว่าง</b></td>
+                                            <td><b>จัดห้องสอบ</b></td>
+                                            <td><b>ลบ</b></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <% for(let i=0; i < exam.room.length ; i++) {
+                                    %>
+                                        <tr>
+
+                                            <td>
+                                                <%= exam.room[i].name %>
+                                            </td>
+                                            <td>
+                                                <%= exam.room[i].floor %>
+                                            </td>
+                                            <td>
+                                                <%= exam.room[i].seat.length%>
+                                            </td>
+
+                                            <% var emptySeat = 0 
+                                        for (let j = 0 ;  j < exam.room[i].seat.length ; j++ ) {
+                                            if(exam.room[i].seat[j].student == null) {
+                                                emptySeat++
+                                            }
+                                        } %>
+                                            <td> <%= emptySeat %></td>
+                                            <td><a href="/manageBuilding/inRoom/<%= exam.room[i]._id%>/<%=exam._id%>%>"
+                                                    class="btn btn-info">จัดห้องสอบ</a></td>
+
+
+                                            <td>
+                                                <a href="/manageCourse/manageTestRoom/deleteTestRoom/<%=exam.room[i]._id%>/<%=exam._id%>"
+                                                    class="btn btn-danger">ลบ</button>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+
+                                    </tbody>
+                                </table>
+
+                                <!--ห้องสอบที่เลือก-->
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+
+
+        <%- include('../layouts/Bottom'); -%>

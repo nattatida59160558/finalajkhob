@@ -1,0 +1,60 @@
+<div>
+    <!-- Modal เพิ่ม ยังไม่ได้แก้ -->
+    <div class="modal fade addCourseModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <form action="/manageCourse/addCourse" method="post" id="formcreate">
+                <input required type="text" class="form-control form-control-lg" name="sub_id" value="<%= sub_id %>" style="display: none">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCourseModal">
+                            เพิ่มคอร์สเรียน</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ปีการศึกษา</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="year" value="<%= year.year %>" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ภาคเรียน</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="semester" value="<%= year.semester %>" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">กลุ่มเรียน</label>
+                            <div class="col-sm-10">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required type="text" class="form-control form-control-lg" name="section">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <!--เพิ่ม-->
+    </div>
+
+    <script type="text/javascript">
+        var editcourse = (_id, course_teacher, course_student, course_test, course_id, course_name, section) => {
+            _id: $('#editid').val(_id)
+            course_teacher: $('#editcourse_teacher').val(course_teacher)
+            course_student: $('#editcourse_student').val(course_student)
+            course_test: $('#editcourse_test').val(course_test)
+            course_id: $('#editcourse_id').val(course_id)
+            course_name: $('#editcourse_name').val(course_name)
+            section: $('#editsection').val(section)
+        }
+    </script>

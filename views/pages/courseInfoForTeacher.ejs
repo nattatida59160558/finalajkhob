@@ -1,0 +1,242 @@
+<%- include('../layouts/Header'); -%>
+<%- include('../layouts/CSS'); -%>
+<%- include('../layouts/endHeader'); -%>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <!--
+      <li class="nav-item active">
+        <a class="nav-link" href="/menu">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>หน้าหลัก</span></a>
+      </li>
+      -->
+
+        <hr class="sidebar-divider">
+
+        <li class="nav-item">
+            <a class="nav-link" href="/manageTeacher/showExaminationList/<%=teacher._id%>">
+                <i class="fas fa-fw fa-table"></i>
+                <span>ดูการคุมสอบ</span></a>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <li class="nav-item active">
+            <a class="nav-link" href="/manageTeacher/showCourse/<%=teacher._id%>">
+                <i class="fas fa-fw fa-table"></i>
+                <span>จัดการคอร์สเรียน</span></a>
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <li class="nav-item">
+            <a class="nav-link" href="/login">
+                <i class="fas fa-fw fa-table"></i>
+                <span>ออกจากระบบ</span></a>
+        </li>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <%- include('../layouts/topbarEIEI'); -%>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="col-sm-10">
+                    <div class="container">
+                        <h1 style="float: left">รายละเอียดคอร์สเรียน</h1>
+                        <div style="clear: both"></div>
+                        <div style="float: right">
+                            <h5>รหัสวิชา :
+                                <%=course.sub_id.sub_id%>
+                            </h5>
+                            <h5>ชื่อรายวิชา :
+                                <%=course.sub_id.sub_name%>
+                            </h5>
+                            <h5>กลุ่มเรียน :
+                                <%=course.section%>
+                            </h5>
+                        </div>
+                        <div style="float: left;">
+                            <h5>อาจารย์ผู้สอน</h5>
+                            <% for(let i = 0 ; i < course.teacher.length ; i++){%>
+                            <%= course.teacher[i].prefixName %>
+                            <%= course.teacher[i].firstName %>
+                            <%= course.teacher[i].lastName %>
+                            <% if(i != course.teacher.length -1 ){ %>
+                            ,
+                            <% } %>
+                            <%}%>
+                            </div>
+                            <div style="clear: both"></div>
+                            <!--จัดการนิสิต จัดการอาจารย์-->
+
+                      <!--
+ <div style="float: right">                 
+                            <a href="/manageCourse/studentManage/<%= course._id%>" class="btn btn-info">จัดการนิสิต</a>
+                        </div>
+                        -->
+
+                        <div style="clear: both"></div>
+                        <hr>
+                        <!--รายชื่อนิสิตในคอร์ส-->
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active">นิสิตทั้งหมด</a></li>
+                        </ul>
+                        <div style="clear: both"></div>
+                        <div style="height: auto !important; overflow: auto;">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <td><b>รหัสนิสิต</b></td>
+                                        <td><b>ชื่อ-นามสกุล</b></td>
+                                        <td><b>คณะ</b></td>
+                                        <td><b>สาขา</b></td>
+                                        <td><b>ชั้นปี</b></td>
+                                        <td><b>สาย</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0; i < course.student.length ; i++) {
+                                            %>
+                                    <tr>
+                                        <td>
+                                            <%= course.student[i].studentId %>
+                                        </td>
+                                        <td>
+                                            <%= course.student[i].prefixName %>
+                                            <%= course.student[i].firstName %>
+                                            <%= course.student[i].lastName %>
+                                        </td>
+                                        <td>
+                                            <%= course.student[i].faculty %>
+                                        </td>
+                                        <td>
+                                            <%= course.student[i].major %>
+                                        </td>
+                                        <td>
+                                            <%= course.student[i].year %>
+                                        </td>
+                                        <td>
+                                            <%= course.student[i].branch %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--รายชื่อนิสิตในคอร์ส-->
+
+                        <hr>
+
+                        <!--ตารางสอบ-->
+                        <button style="float: right" type="button" class="btn btn-success" data-toggle="modal"
+                            data-target="#myModal">
+                            เพิ่มการสอบ
+                        </button>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active">รายการสอบ</a></li>
+                        </ul>
+                        <div style="clear: both"></div>
+                        <div style="height: auto !important; overflow: auto;">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <td><b>ช่วงสอบ</b></td>
+                                        <td><b>วันที่</b></td>
+                                        <td><b>เวลาเริ่ม</b></td>
+                                        <td><b>เวลาสิ้นสุด</b></td>
+                                        <td><b>สถานะ</b></td>
+                                        <td><b>จัดการห้องสอบ</b></td>
+                                        <td><b>ลบ</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i=0; i < course.exam.length ; i++) {
+                                        %>
+                                    <tr>
+                                        <td>
+                                            <%= course.exam[i].season %>
+                                        </td>
+                                        <td>
+                                            <%= course.exam[i].date %>
+                                        </td>
+                                        <td>
+                                            <%= course.exam[i].timeStart %>
+                                        </td>
+                                        <td>
+                                            <%= course.exam[i].timeFinish %>
+                                        </td>
+                                        <td>
+                                            <%
+                                        let status = 'พร้อม'
+                                        for (let j = 0 ;  j < course.exam[i].score.length ; j++ ){
+                                            if(course.exam[i].score[j].seatStatus == 'null'){
+                                                status = 'รอดำเดินการ'
+                                                break
+                                            }
+                                            
+                                            if(course.exam[i].examiner.length == 0 ){
+                                                status = 'รอดำเดินการ'
+                                            }
+                                        }
+                                        %>
+                                            <%= status %>
+                                        </td>
+                                        <td>
+                                            <a href="/manageCourse/manageTestRoom/<%=course.exam[i]._id%>"
+                                                class="btn btn-primary">จัดการห้องสอบ</button>
+                                        </td>
+                                        <td>
+                                            <a href="/manageCourse/deleteExam/<%=course.exam[i]._id%>/<%=course._id%>"
+                                                class="btn btn-danger">ลบ</button>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+
+<%- include('../modals/courseInfoModal'); -%>
+<%- include('../layouts/Bottom'); -%>

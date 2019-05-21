@@ -1,0 +1,85 @@
+<div>
+    <!-- Modal เพิ่ม -->
+    <div class="modal fade addBuildingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <form action="/manageBuilding/post" method="post">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addBuildingModal">
+                            เพิ่มตึก</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ชื่อตึก</label>
+                            <div class="col-sm-10">
+                                <input required type="text" class="form-control form-control-lg" name="buildingName" id="buildingName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">จำนวนชั้น</label>
+                            <div class="col-sm-10">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required type="text" class="form-control form-control-lg" name="floor" id="floor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <!--เพิ่ม-->
+    </div>
+
+    <!-- Modal แก้ไข -->
+    <div class="modal fade editBuildingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl" role="document">
+            <form action="/manageBuilding/update" method="post">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editBuildingModal">
+                            แก้ไขตึก</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">ชื่อตึก</label>
+                            <div class="col-sm-10">
+                                <input required type="text" name="_id" id="editid" style="display: none">
+                                <input required type="text" class="form-control form-control-lg" name="editbuildingName" id="editbuildingName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-lg">จำนวนชั้น</label>
+                            <div class="col-sm-10">
+                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required type="text" class="form-control form-control-lg" name="editfloor" id="editfloor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <!--แก้ไข-->
+
+
+
+        <script type="text/javascript">
+            var editBuilding = (_id, buildingName, floor) => {
+                _id: $('#editid').val(_id)
+                buildingName: $('#editbuildingName').val(buildingName)
+                floor: $('#editfloor').val(floor)
+
+            }
+        </script>
